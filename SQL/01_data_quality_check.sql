@@ -27,12 +27,12 @@ SELECT
 FROM `orders`;
 
 SELECT 
-  MIN(Sales),
-  MAX(Sales),
-  MIN(Profit),
-  MAX(Profit),
-  MIN(Discount),
-  MAX(Discount)
+  MIN(Sales) AS min_sales,
+  MAX(Sales) AS max_sales,
+  MIN(Profit) AS min_profit,
+  MAX(Profit) AS max_profit,
+  MIN(Discount) AS min_discount,
+  MAX(Discount) AS max_discount
 FROM `orders`;
 
 SELECT
@@ -56,7 +56,7 @@ WITH orders_flagged AS (
   LEFT JOIN `returns` AS r
     ON o.Order_ID = r.Order_ID
   GROUP BY o.Order_ID
-)
+  ) 
 SELECT
   COUNTIF(is_returned = 1) AS returned_orders,
   COUNTIF(is_returned = 0) AS non_returned_orders,
