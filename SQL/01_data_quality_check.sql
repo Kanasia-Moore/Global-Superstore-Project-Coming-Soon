@@ -1,10 +1,16 @@
-```sql
-SELECT  
-  Count(Order_ID) as total_orders  
-FROM `orders`;
+/* 
+## Quality Check Summary
+- **_Orders table_ is at the order-line level with repeated `Order_ID` values per product purchased**
+- **`Row_ID` **appears to be** a unique row identifier (validated via duplicate check).**
+- **Returns table is used as an order-level return flag (validated for duplicate `Order_ID`s).**
+- **No critical nulls present in Sales or Profit columns**
+- **Data spans years 2012- 2015 (Based on min/max `Order_Date`**
+- **Left joins (Orders → Returns, Orders → People) preserve the full order population.** 
+*/
 
-SELECT 
-  count(DISTINCT Order_ID) as bundled_orders
+SELECT
+  COUNT(*) AS total_orders,
+  COUNT(DISTINCT Order_ID) AS distinct_orders
 FROM `orders`;
 
 SELECT 
@@ -12,9 +18,56 @@ SELECT
   max(Order_Date)
 FROM `orders`;
 
-SELECT Row_ID, count(*)
-FROM `orders`
-GROUP BY Row_ID
-HAVING COUNT(*) > 1;
+SELECT 
+  COUNTIF(Order_ID IS NULL) AS null_order_id,
+  COUNTIF(Order_Date IS NULL) AS null_order_date,
+  COUNTIF(Customer_ID IS NULL) AS null_customer_id,
+  COUNTIF(Sales IS NULL) AS null_sales,
+  COUNTIF(Profit IS NULL) AS null_profit
+FROM `orders`;
 
+SELECT 
+  MIN(Sales),
+  MAX(Sales),
+  MIN(Profit),
+  MAX(Profit),
+  MIN(Discount),
+  MAX(Discount)
+FROM `orders`;
+
+SELECT
+  COUNT(*) AS total_returns,
+  COUNT(DISTINCT Order_ID) AS distinct_return_orders
+FROM `returns`;
+
+SELECT
+  Order_ID,
+  COUNT(*) AS cnt
+FROM `returns`
+GROUP BY Order_ID
+HAVING COUNT(*) > 1
+ORDER BY cnt DESC;
+
+WITH orders_flagged AS (
+  SELECT 
+    o.Order_ID,
+    MAX(IF(r.Returned IS NOT NULL, 1, 0)) AS is_returned
+  FROM `orders` AS o
+  LEFT JOIN `returns` AS r
+    ON o.Order_ID = r.Order_ID
+  GROUP BY o.Order_ID
+)
+SELECT
+  COUNTIF(is_returned = 1) AS returned_orders,
+  COUNTIF(is_returned = 0) AS non_returned_orders,
+  COUNT(*) AS total_orders
+FROM orders_flagged;
+
+SELECT
+  COUNT(*) AS total_rows,
+  COUNTIF(p.Region IS NOT NULL) AS matched_people_rows,
+  COUNTIF(p.Region IS NULL) AS unmatched_people_rows
+FROM `orders` o
+LEFT JOIN `people` p
+  ON o.Region = p.Region;
 
