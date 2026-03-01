@@ -1,11 +1,11 @@
 /* 
-## Quality Check Summary
-- **_Orders table_ is at the order-line level with repeated `Order_ID` values per product purchased**
-- **`Row_ID` **appears to be** a unique row identifier (validated via duplicate check).**
-- **Returns table is used as an order-level return flag (validated for duplicate `Order_ID`s).**
-- **No critical nulls present in Sales or Profit columns**
-- **Data spans years 2012- 2015 (Based on min/max `Order_Date`**
-- **Left joins (Orders → Returns, Orders → People) preserve the full order population.** 
+Quality Check Summary
+- Orders table is at the order-line level with repeated `Order_ID` values per product purchased.
+- `Row_ID` **appears to be a unique row identifier (validated via duplicate check).
+- Returns table is used as an order-level return flag (validated for duplicate `Order_ID`s).
+- No critical nulls present in Sales or Profit columns
+- Data spans years 2012- 2015 (Based on min/max `Order_Date`
+- Left joins (Orders → Returns, Orders → People) preserve the full order population. 
 */
 
 SELECT
