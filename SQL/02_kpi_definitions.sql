@@ -1,5 +1,5 @@
 -- Superstore base table view (line-level)
-WITH superstore_base (SELECT 
+CREATE VIEW superstore_base AS SELECT 
   o.* EXCEPT(Row_ID),
   EXTRACT(MONTH FROM Order_Date) AS Order_Month,
   EXTRACT(YEAR FROM Order_Date) AS Order_Year,
@@ -17,6 +17,6 @@ WITH superstore_base (SELECT
 FROM `orders` as o
 LEFT JOIN `returns` as r ON o.Order_ID = r.Order_ID
 LEFT JOIN `people` as p ON o.Region = p.Region
-)
+
 -- Superstore order table view (order-level)
 
