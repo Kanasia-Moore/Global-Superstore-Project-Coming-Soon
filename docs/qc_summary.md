@@ -16,7 +16,7 @@ Retail discount tiers typically occur in structured percentage increments (e.g.,
 
 ### Decision
 - Raw discount values were preserved to maintain source data integrity.
-- Discount banding was implemented using logical percentage ranges (>0%–10%, 11–20%, 21–40%, >40%) to ensure consistent analytical segmentation without altering original values.
+- Discount banding was implemented using logical percentage ranges (0%, 0-1%, 1%–15%, 16–30%, 31–50%, >50%) to ensure consistent analytical segmentation without altering original values.
 
 ### Conclusion
 No corrective transformation was required. Analytical banding sufficiently addresses segmentation consistency while preserving the fidelity of the original dataset.
