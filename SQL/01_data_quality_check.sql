@@ -8,6 +8,19 @@ SELECT
   max(Order_Date)
 FROM `orders`;
 
+SELECT
+  COUNT(*) AS total_returns,
+  COUNT(DISTINCT Order_ID) AS distinct_return_orders
+FROM `returns`;
+
+SELECT
+  Order_ID,
+  COUNT(*) AS cnt
+FROM `returns`
+GROUP BY Order_ID
+HAVING COUNT(*) > 1
+ORDER BY cnt DESC;
+
 SELECT 
   COUNTIF(Order_ID IS NULL) AS null_order_id,
   COUNTIF(Order_Date IS NULL) AS null_order_date,
@@ -53,18 +66,6 @@ SELECT
         / SUM(sales)), 2) * 100 AS revenue_percentage
 FROM `orders`;
 
-SELECT
-  COUNT(*) AS total_returns,
-  COUNT(DISTINCT Order_ID) AS distinct_return_orders
-FROM `returns`;
-
-SELECT
-  Order_ID,
-  COUNT(*) AS cnt
-FROM `returns`
-GROUP BY Order_ID
-HAVING COUNT(*) > 1
-ORDER BY cnt DESC;
 
 WITH orders_flagged AS (
   SELECT 
