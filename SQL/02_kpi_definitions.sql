@@ -7,7 +7,7 @@ SELECT
   If(r.Returned IS NOT NULL, 1, 0) AS Return_Flagged,
   CASE
     WHEN Discount = 0 THEN '0%'
-    WHEN Discount <= 0.01 THEN '0-1%'
+    WHEN Discount <= 0.01 THEN '<1%'
     WHEN Discount <= 0.15 THEN '1-15%'
     WHEN Discount <= 0.30 THEN '16-30%'
     WHEN Discount <= 0.50 THEN '31-50%'
