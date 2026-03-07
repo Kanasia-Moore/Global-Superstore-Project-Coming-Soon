@@ -80,7 +80,7 @@ SELECT
   COUNTIF(is_returned = 1) AS returned_orders,
   COUNTIF(is_returned = 0) AS non_returned_orders,
   COUNT(*) AS total_orders
-FROM orders_flagged;
+FROM `orders_flagged`;
 
 SELECT
   COUNT(*) AS total_rows,
