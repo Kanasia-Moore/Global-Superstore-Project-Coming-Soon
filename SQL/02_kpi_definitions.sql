@@ -1,3 +1,12 @@
+-- ======================================================
+-- KPI Base Table Creation
+-- Purpose:
+-- Create a metrics-ready dataset combining Orders,
+-- Returns, and People tables with derived KPI fields.
+-- This dataset will be used for all downstream analysis.
+-- ======================================================
+
+
 -- Superstore base table view (line-level)
 CREATE VIEW superstore_base AS 
 SELECT 
