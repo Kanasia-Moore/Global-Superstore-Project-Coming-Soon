@@ -101,7 +101,7 @@ SELECT
   COUNTIF(Return_Flag = 1) AS Returned_Lines,
   ROUND(AVG(Line_Profit_Margin), 2) AS Avg_Profit_Margin,
   ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(*)) * 100, 2) AS Return_Rate_Percent
-FROM `inspiring-grove-457423-b0.global_superstore.superstore_base`
+FROM `superstore_base`
 GROUP BY Discount_Band
 ORDER BY Return_Rate_Percent DESC;
 
@@ -115,7 +115,7 @@ SELECT
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
           COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate_Percent
-FROM `inspiring-grove-457423-b0.global_superstore.superstore_base`
+FROM `superstore_base`
 GROUP BY `Sub-Category` 
 ORDER BY Return_Rate_Percent DESC;
 
