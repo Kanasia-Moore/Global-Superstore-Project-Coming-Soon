@@ -97,13 +97,15 @@ ORDER BY Return_Rate_Percent DESC
 -- Return Rate per Discount Band
 SELECT
   Discount_Band,
-  COUNT(*) AS Order_Lines,
-  COUNTIF(Return_Flag = 1) AS Returned_Lines,
+  COUNT(DISTINCT Order_ID) AS Orders_per_Band,
+  COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
   ROUND(AVG(Line_Profit_Margin), 2) AS Avg_Profit_Margin,
-  ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(*)) * 100, 2) AS Return_Rate_Percent
+  ROUND(SAFE_DIVIDE(
+          COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate_Percent
 FROM `superstore_base`
 GROUP BY Discount_Band
-ORDER BY Return_Rate_Percent DESC;
+ORDER BY Return_Rate_Percent DESC
 
 -- Priortity Fix List
 SELECT
