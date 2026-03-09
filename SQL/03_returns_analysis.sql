@@ -2,7 +2,7 @@
 Select 
   COUNT(*) AS Total_Orders,
   COUNTIF(Return_Flag = 1) AS Total_Returns,
-  ROUND(COUNTIF(Return_Flag = 1) / COUNT(*) * 100, 1) AS Return_Rate
+  ROUND(COUNTIF(Return_Flag = 1) / COUNT(*) * 100, 2) AS Return_Rate
 FROM superstore_order_summary
 
 -- Return Rate per Category
@@ -12,7 +12,7 @@ SELECT
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
-          COUNT(DISTINCT Order_ID)) * 100, 1) AS Return_Rate
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_base`
 GROUP BY Category
 ORDER BY Return_Rate DESC;
@@ -24,7 +24,7 @@ SELECT
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
-          COUNT(DISTINCT Order_ID)) * 100, 1) AS Return_Rate
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_base`
 GROUP BY `Sub-Category`
 ORDER BY Return_Rate DESC
@@ -34,7 +34,7 @@ SELECT
   Region,
   COUNT(*) AS Orders_by_Region,
   COUNTIF(Return_Flag = 1) AS Return_Orders,
-  ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1),COUNT(Order_ID)) * 100, 1) AS Return_Rate
+  ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_order_summary`
 GROUP BY Region
 ORDER BY Return_Rate_Percent DESC
@@ -44,7 +44,7 @@ SELECT
   Segment,
   COUNT(*) AS Orders_by_Segment,
   COUNTIF(Return_Flag = 1) AS Return_Orders,
-  ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(Order_ID)) * 100, 1) AS Return_Rate
+  ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_order_summary`
 GROUP BY Segment
 ORDER BY Return_Rate DESC
@@ -56,7 +56,7 @@ SELECT
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
-          COUNT(DISTINCT Order_ID)) * 100, 1) AS Return_Rate
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_base`
 GROUP BY Ship_Mode
 ORDER BY Return_Rate DESC
@@ -68,7 +68,7 @@ SELECT
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
-          COUNT(DISTINCT Order_ID)) * 100, 1) AS Return_Rate
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_base`
 GROUP BY Discount_Band
 ORDER BY Return_Rate DESC
