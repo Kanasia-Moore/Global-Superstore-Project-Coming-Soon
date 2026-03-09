@@ -30,14 +30,20 @@ GROUP BY Discount_Band
 ORDER BY Profit_Margin DESC
 
 -- Priortity Return Hotspots
+WITH Top_Subcat_Rankings AS 
+(
 SELECT
   `Sub-Category`,
-  ROUND(SUM(Sales), 2) Sales_by_SubCat,
-  ROUND(SUM(Profit), 2) Profit_by_SubCat,
-  ROUND(Avg(Discount) * 100, 2) AS Avg_Discount,
+  COUNT(DISTINCT Order_ID) AS Orders_by_SubCat,
+  COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
-          COUNT(DISTINCT Order_ID)) * 100, 1) AS Return_Rate
-FROM `superstore_base`
-GROUP BY `Sub-Category` 
-ORDER BY Return_Rate_Percent DESC;
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
+FROM `inspiring-grove-457423-b0.global_superstore.superstore_base`
+GROUP BY `Sub-Category`
+)
+SELECT 
+  `Sub-Category`,
+  RANK() OVER(ORDER BY Return_Rate DESC) AS Ranking
+FROM Top_Subcat_Rankings
+
