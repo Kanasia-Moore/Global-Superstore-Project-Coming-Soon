@@ -28,6 +28,12 @@ FROM `orders` as o
 LEFT JOIN `returns` as r ON o.Order_ID = r.Order_ID
 LEFT JOIN `people` as p ON o.Region = p.Region
 
+SELECT 
+  COUNT(*) AS Total_Orders,
+  SUM(Sales) AS Total_Sales,
+  SUM(Profit) AS Total_Profit
+FROM `superstore_base`;
+
 -- Superstore order table view (order-level)
 CREATE VIEW superstore_order_summary AS 
 SELECT
@@ -44,7 +50,6 @@ SELECT
 FROM `superstore_base`
 GROUP BY Order_Id;
 
--- Overall Return Rate Calc
 Select 
   COUNT(*) AS Total_Orders,
   COUNTIF(Return_Flag = 1) AS Total_Returns,
