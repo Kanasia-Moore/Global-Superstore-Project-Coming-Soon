@@ -1,4 +1,4 @@
--- Overall Return Rate Calc
+-- Overall Return KPI
 Select 
   COUNT(*) AS Total_Orders,
   COUNTIF(Return_Flag = 1) AS Total_Returns,
