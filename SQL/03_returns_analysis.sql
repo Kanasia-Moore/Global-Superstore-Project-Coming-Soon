@@ -10,8 +10,6 @@ SELECT
   Category,
   COUNT(DISTINCT Order_ID) AS Orders_by_Category,
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
-  ROUND(SUM(Sales), 2) Sales_by_Cat,
-  ROUND(SUM(Profit), 2) Profit_by_Cat,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
           COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate_Percent
@@ -24,8 +22,6 @@ SELECT
   `Sub-Category`,
   COUNT(DISTINCT Order_ID) AS Orders_by_SubCat,
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
-  ROUND(SUM(Sales), 2) Sales_by_SubCat,
-  ROUND(SUM(Profit), 2) Profit_by_SubCat,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
           COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate_Percent
@@ -38,8 +34,6 @@ SELECT
   Region,
   COUNT(*) AS Orders_by_Region,
   COUNTIF(Return_Flag = 1) AS Return_Orders,
-  ROUND(SUM(Sales), 2) Sales_by_Region,
-  ROUND(SUM(Profit), 2) Profit_by_Region,
   ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1),COUNT(Order_ID)) * 100, 2) AS Return_Rate_Percent
 FROM `superstore_order_summary`
 GROUP BY Region
@@ -50,9 +44,7 @@ SELECT
   Segment,
   COUNT(*) AS Orders_by_Segment,
   COUNTIF(Return_Flag = 1) AS Return_Orders,
-  ROUND(SUM(Sales), 2) Sales_by_Segment,
-  ROUND(SUM(Profit), 2) Profit_by_Segment,
-  ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1),COUNT(Order_ID)) * 100, 2) AS Return_Rate_Percent
+  ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(Order_ID)) * 100, 2) AS Return_Rate_Percent
 FROM `superstore_order_summary`
 GROUP BY Segment
 ORDER BY Return_Rate_Percent DESC
@@ -81,7 +73,7 @@ FROM `superstore_base`
 GROUP BY Discount_Band
 ORDER BY Return_Rate_Percent DESC
 
--- Priortity Return by Sub-Category
+-- Priortity Return Hotspots
 SELECT
   `Sub-Category`,
   ROUND(SUM(Sales), 2) Sales_by_SubCat,
