@@ -54,7 +54,8 @@ SELECT
   Profit_Margin,
   Avg_Discount,
   Return_Rate,
-  RANK() OVER (ORDER BY Return_Rate DESC) AS Return_Rank
 FROM Subcat_Returns
-ORDER BY Return_Rank;
+WHERE Orders_by_SubCat >= 50
+  AND Return_Rate > 4.2
+ORDER BY Profit_Margin ASC, Return_Rate DESC;
 
