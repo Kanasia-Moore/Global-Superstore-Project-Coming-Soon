@@ -3,6 +3,9 @@ SELECT
   Category,
   COUNT(DISTINCT Order_ID) AS Orders_by_Category,
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
+  ROUND(SUM(Sales), 2) AS Total_Sales,
+  ROUND(SUM(Profit), 2) AS Total_Profit,
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
           COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
@@ -15,6 +18,9 @@ SELECT
   `Sub-Category`,
   COUNT(DISTINCT Order_ID) AS Orders_by_SubCat,
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
+  ROUND(SUM(Sales), 2) AS Total_Sales,
+  ROUND(SUM(Profit), 2) AS Total_Profit,
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
           COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
@@ -27,6 +33,9 @@ SELECT
   Region,
   COUNT(*) AS Orders_by_Region,
   COUNTIF(Return_Flag = 1) AS Return_Orders,
+  ROUND(SUM(Sales), 2) AS Total_Sales,
+  ROUND(SUM(Profit), 2) AS Total_Profit,
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
   ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_order_summary`
 GROUP BY Region
@@ -37,6 +46,9 @@ SELECT
   Segment,
   COUNT(*) AS Orders_by_Segment,
   COUNTIF(Return_Flag = 1) AS Return_Orders,
+  ROUND(SUM(Sales), 2) AS Total_Sales,
+  ROUND(SUM(Profit), 2) AS Total_Profit,
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
   ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_order_summary`
 GROUP BY Segment
@@ -47,6 +59,9 @@ SELECT
   Ship_Mode,
   COUNT(DISTINCT Order_ID) AS Orders_by_Ship,
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
+  ROUND(SUM(Sales), 2) AS Total_Sales,
+  ROUND(SUM(Profit), 2) AS Total_Profit,
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
           COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
@@ -59,6 +74,9 @@ SELECT
   Discount_Band,
   COUNT(DISTINCT Order_ID) AS Orders_per_Band,
   COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
+  ROUND(SUM(Sales), 2) AS Total_Sales,
+  ROUND(SUM(Profit), 2) AS Total_Profit,
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
           COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
