@@ -21,10 +21,15 @@ ORDER BY Profit_Margin DESC
 -- Profit Margin per Discount Band
 SELECT
   Discount_Band,
+  COUNT(DISTINCT Order_ID) AS Orders_per_Band,
+  COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
   ROUND(SUM(Sales), 2) AS Total_Sales,
   ROUND(SUM(Profit), 2) AS Total_Profit,
   ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
-  ROUND(AVG(Discount) * 100, 2) AS Avg_Discount_Percentage
+  ROUND(AVG(Discount) * 100, 2) AS Avg_Discount_Percentage,
+  ROUND(SAFE_DIVIDE(
+          COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_base`
 GROUP BY Discount_Band
 ORDER BY Profit_Margin DESC
