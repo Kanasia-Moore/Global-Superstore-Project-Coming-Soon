@@ -86,3 +86,17 @@ SELECT
   RANK() OVER (ORDER BY Return_Rate DESC) AS Ranking
 FROM Top_Subcat_Rankings
 ORDER BY Ranking;
+
+-- Priority fix list
+SELECT
+  `Sub-Category`,
+  ROUND(SUM(Sales), 2) Sales_by_SubCat,
+  ROUND(SUM(Profit), 2) Profit_by_SubCat,
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
+  ROUND(Avg(Discount) * 100, 2) AS Avg_Discount,
+  ROUND(SAFE_DIVIDE(
+          COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate_Percent
+FROM `superstore_base`
+GROUP BY `Sub-Category` 
+ORDER BY Return_Rate_Percent DESC;
