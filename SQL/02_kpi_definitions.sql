@@ -45,8 +45,8 @@ GROUP BY Order_Id;
 Select 
   COUNT(*) AS Total_Orders,
   COUNTIF(Return_Flag = 1) AS Total_Returns,
-  SUM(Sales) AS Total_Sales,
-  SUM(Profit) AS Total_Profit,
+  Round(SUM(Sales), 2) AS Total_Sales,
+  ROUND(SUM(Profit), 2) AS Total_Profit,
   ROUND(COUNTIF(Return_Flag = 1) / COUNT(*) * 100, 1) AS Return_Rate
 FROM superstore_order_summary
 
