@@ -27,7 +27,7 @@ WITH Subcat_Returns AS (
     ROUND(SAFE_DIVIDE(
         COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
         COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
-  FROM `inspiring-grove-457423-b0.global_superstore.superstore_base`
+  FROM `superstore_base`
   GROUP BY `Sub-Category`
 )
 SELECT
