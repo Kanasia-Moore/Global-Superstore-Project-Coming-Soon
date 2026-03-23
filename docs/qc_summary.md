@@ -40,7 +40,7 @@ I checked the total number of records and distinct returned orders in the `retur
 
 **Interpretation:**  
 This confirms how many orders were flagged as returned and helps validate the size of the return population before merging returns into the base table.
-This also confirms that while the `orders` table is line-level, the `returns` table is order-level
+This also confirms that while the `orders` table is line-level, the `returns` table is order-level.
 
 ---
 
@@ -49,7 +49,7 @@ This also confirms that while the `orders` table is line-level, the `returns` ta
 I tested whether any `Order_ID` appeared more than once in the `returns` table.
 
 **QC Findings:**
-- Duplicate return records: `[insert result or "none found"]`
+- Duplicate return records: `0`
 
 **Interpretation:**  
 If duplicates exist, that would indicate a data quality issue in the returns table and could inflate return counts after joining. If none were found, the table can be treated as a clean order-level return flag source.
@@ -68,11 +68,7 @@ I checked for missing values in important analytical fields in the `orders` tabl
 - `Profit`
 
 **QC Findings:**
-- Null `Order_ID`: `[insert result]`
-- Null `Order_Date`: `[insert result]`
-- Null `Customer_ID`: `[insert result]`
-- Null `Sales`: `[insert result]`
-- Null `Profit`: `[insert result]`
+No nulls were found across these specific columns.
 
 **Interpretation:**  
 These checks confirm whether critical identifiers and financial fields are complete enough for reliable KPI, trend, and customer analysis.
