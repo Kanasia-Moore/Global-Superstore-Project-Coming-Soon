@@ -11,7 +11,7 @@
 
 ## Project Overview
 
-This project analyzes the Global Superstore dataset to evaluate business performance, profitability, and return behavior.  
+This project analyzes the Global Superstore dataset from [Kaggle](https://www.kaggle.com/datasets/endofnight17j03/global-superstore) to evaluate business performance, profitability, and return behavior.  
 
 The goal is to move beyond surface-level reporting and build a structured analysis that identifies key drivers of revenue, profit, and operational inefficiencies.
 
