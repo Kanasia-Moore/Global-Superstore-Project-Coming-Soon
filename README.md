@@ -3,7 +3,7 @@
 ## Project Navigation
 
 - [Business Questions](./docs/business_questions.md)
-- [Data Quality Checks](./SQL/qc_summary.md)
+- [Data Quality Checks](./docs/qc_summary.md)
 - [Metric Dictionary](./docs/metric_dictionary.md)
 - [SQL / Data Transformation](./SQL/)
 - [Dashboard](./Tableau/dashboard/)
