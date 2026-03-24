@@ -3,11 +3,11 @@
 ## Project Navigation
 
 - [Business Questions](./docs/business_questions.md)
-- [Data Quality Checks](./qc_summary.md)
-- [Metric Dictionary](./metric_dictionary.md)
-- [SQL / Data Transformation](./sql/)
-- [Dashboard](./dashboard/)
-- [Key Insights](#key-insights)
+- [Data Quality Checks](./SQL/qc_summary.md)
+- [Metric Dictionary](./docs/metric_dictionary.md)
+- [SQL / Data Transformation](./SQL/)
+- [Dashboard](./Tableau/dashboard/)
+- [Key Insights](./docs/insights_and_recommendations/)
 
 ## Project Overview
 
