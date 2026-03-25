@@ -167,7 +167,7 @@ This validates whether the `people` table can be safely joined for region-level 
 ---
 ### 12. Unmatched People Rows Check
 
-This qc was perfomed to identify the outlier of the join between the `orders` and `people` tables using region.
+This check helps identify the outlier of the join between the `orders` and `people` tables using region.
 
 **QC Findings:**
 - Region `Canada`
