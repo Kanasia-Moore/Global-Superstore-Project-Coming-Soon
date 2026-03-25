@@ -13,7 +13,7 @@ SELECT
     WHEN Discount <= 0.50 THEN '31-50%'
     ELSE '>50%'
   END AS Discount_Band,
-  ROUND(SAFE_DIVIDE(o.Profit, NULLIF(o.Sales, 0)) * 100, 2) AS Profit_Margin_Line,
+  ROUND(SAFE_DIVIDE(o.Profit, NULLIF(o.Sales, 0), 2) AS Profit_Margin_Line,
   p.Person
 FROM `orders` as o
 LEFT JOIN `returns` as r ON o.Order_ID = r.Order_ID
@@ -35,13 +35,13 @@ SELECT
   ANY_VALUE(Order_Year) AS Year,
   ROUND(SUM(Sales), 2) AS Sales,
   ROUND(SUM(Profit), 2) AS Profit,
-  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)), 2) AS Profit_Margin,
   ROUND(AVG(Discount), 2) AS Avg_Discount,
   MAX(Return_Flag) AS Return_Flag
 FROM `superstore_base`
 GROUP BY Order_Id;
 
--- Overall KPI
+-- Overview
 Select 
   COUNT(*) AS Total_Orders,
   COUNTIF(Return_Flag = 1) AS Total_Returns,
