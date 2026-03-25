@@ -82,7 +82,7 @@ I reviewed the minimum and maximum values for `Sales`, `Profit`, and `Discount` 
 **QC Findings:**
 - Min sales: `$0.44`
 - Max sales: `$22,638.48`
-- Min profit: `$-6,599.98`
+- Min profit: `-$6,599.98`
 - Max profit: `$8,399.98`
 - Min discount: `0.2%`
 - Max discount: `85%`
