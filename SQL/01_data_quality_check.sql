@@ -90,3 +90,9 @@ FROM `orders` o
 LEFT JOIN `people` p
   ON o.Region = p.Region;
 
+SELECT 
+  *
+FROM `inspiring-grove-457423-b0.global_superstore.orders` o
+LEFT JOIN `inspiring-grove-457423-b0.global_superstore.people` p
+  ON o.Region = p.Region
+WHERE p.Person IS NULL;
