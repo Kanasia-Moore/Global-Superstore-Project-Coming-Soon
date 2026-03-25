@@ -92,7 +92,36 @@ LEFT JOIN `people` p
 
 SELECT 
   *
-FROM `inspiring-grove-457423-b0.global_superstore.orders` o
-LEFT JOIN `inspiring-grove-457423-b0.global_superstore.people` p
+FROM `orders` o
+LEFT JOIN `people` p
+  ON o.Region = p.Region
+WHERE p.Person IS NULL;
+
+SELECT
+  COUNT(*) AS unmatched_rows,
+  (SELECT COUNT(*) 
+   FROM `orders`) AS total_rows,
+  ROUND(
+    COUNT(*) * 100.0 / (
+      SELECT COUNT(*) 
+      FROM `orders`
+    ),
+    2
+  ) AS perc_total_rows,
+  
+  ROUND(SUM(o.Sales), 2) AS unmatched_sales,
+  (
+    SELECT ROUND(SUM(Sales), 2)
+    FROM `orders`
+  ) AS total_sales,
+  ROUND(
+    SUM(o.Sales) * 100.0 / (
+      SELECT SUM(Sales)
+      FROM `orders`
+    ),
+    2
+  ) AS perc_total_sales
+FROM `orders` o
+LEFT JOIN `people` p
   ON o.Region = p.Region
 WHERE p.Person IS NULL;
