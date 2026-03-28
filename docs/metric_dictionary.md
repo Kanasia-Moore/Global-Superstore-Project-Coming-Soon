@@ -38,7 +38,7 @@ These metrics are calculated at the transaction (row) level.
   - ≤ 0.15 → '1-15%'
   - ≤ 0.30 → '16-30%'
   - ≤ 0.50 → '31-50%'
-  -  > 0.50 → '>50%'
+  - + 0.50 → '>50%'
 - **Purpose:** Simplifies discount analysis and supports segmentation
 
 ---
