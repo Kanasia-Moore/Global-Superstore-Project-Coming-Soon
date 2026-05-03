@@ -43,16 +43,15 @@ The strongest finding is that **profit loss becomes more visible when discounts 
 
 The Tableau dashboard highlights KPI performance, category and regional trends, return behavior, and discount impact.
 
-![Global Superstore Dashboard](./04_dashboard/dashboard.png)
+![Global Superstore Dashboard](./visuals/dashboard.png)
 
 ---
 
 ## Repository Structure
 
-- [Project Context](./01_project_context/) — problem statement and business framing
-- [Supporting Work](./02_supporting_work/) — data quality checks, metric definitions, and SQL preparation
-- [Analysis](./03_analysis/) — key findings and recommendations
-- [Dashboard](./04_dashboard/) — final Tableau dashboard output
+- [Supporting Work](./supporting_work/) — data quality checks, metric definitions, and SQL preparation
+- [Analysis](./analysis/) — key findings and recommendations
+- [Dashboard](./visuals/) — final Tableau dashboard output
 
 ---
 
