@@ -2,7 +2,7 @@
 
 ## Project Navigation
 
-- [Business Questions](./docs/business_questions.md)
+- [Problem Statement](./docs/problem_statement.md)
 - [Data Quality Checks](./docs/qc_summary.md)
 - [Metric Dictionary](./docs/metric_dictionary.md)
 - [SQL / Data Transformation](./SQL/)
@@ -21,18 +21,6 @@ This project follows a full analytical workflow:
 - Metric definition and standardization
 - KPI development
 - Business-focused analysis
-
----
-
-## Business Questions
-
-The analysis is guided by the following key questions:
-
-- How is the business performing in terms of sales and profit?
-- What is the overall return rate, and how does it impact performance?
-- How do discounts affect profitability?
-- Which factors drive higher or lower profit margins?
-- Are there patterns in returns across orders, regions, or segments?
 
 ---
 
@@ -125,8 +113,6 @@ This approach ensures that insights are built on a reliable and well-defined dat
 
 ## Key Insights
 
-> *(Replace with your actual findings once finalized)*
-
 - Return rates represent a meaningful portion of total orders and impact profitability  
 - Higher discounts do not always translate to higher sales performance  
 - Certain orders generate high revenue but low profit margins  
@@ -135,8 +121,6 @@ This approach ensures that insights are built on a reliable and well-defined dat
 ---
 
 ## Dashboard
-
-> *(Add screenshots or link once completed)*
 
 The final dashboard visualizes:
 - KPI performance
