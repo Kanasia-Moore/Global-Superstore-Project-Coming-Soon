@@ -1,4 +1,4 @@
-# Global Superstore Profitability Analysis
+# Global Superstore: Discount Strategy & Profitability Analysis
 
 ## Problem Statement
 
